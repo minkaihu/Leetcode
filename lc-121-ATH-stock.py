@@ -1,20 +1,19 @@
 class Solution:
     def maxProfit(self, prices) -> int:
 
-
-        
-        buy = prices[0]
-        sell = 0
+        if len(prices) == 0:
+            return 0
+        max_sell = prices[-1]
         profit = 0
-        for xind, x in enumerate(prices[:-1]):
-            
-            if x <= buy:
-                buy = x
-                sell = (max(prices[xind+1:]) - buy)
-                print(buy, x, profit, sell)
 
-                if  profit < sell:
-                    profit= sell
+        for x in prices[::-1]:
+            print(x)
+            if max_sell - x > profit:
+                profit = max_sell - x
+            if x > max_sell:
+                max_sell = x
+
+
         return ((profit))
 
 
