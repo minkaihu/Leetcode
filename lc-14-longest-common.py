@@ -2,32 +2,21 @@ from calendar import c
 
 
 class Solution:
-    def longestCommonPrefix(self, strs: list[str]) -> str:
-        
-        prefix_list = ''
-        counter = 0
-        while True:
-            try:
-                prefix_list += (strs[0][counter])
-            except:
-                return (prefix_list)  
- 
-            for x in strs:
-                #print(prefix_list)
-                try:
-                    if (str(prefix_list) == x[0:counter+1]) is False:
-                        
-                        return (prefix_list[:-1])
-                    
-                        
-                    
-                except:
-                    return (prefix_list)  
+    def longestCommonPrefix(self, strs):
+        if not strs:
+            return ""
             
-            
-            counter += 1
+        for i, letter_group in enumerate(zip(*strs)):
+            print((letter_group))
+            print(set(letter_group))
+            if len(set(letter_group)) > 1:      
+                print (len(set(letter_group)))
+                return strs[0][:i]
+        else:
+            print("else")
+            return min(strs)
         
 test=Solution()
 
 
-print(test.longestCommonPrefix([""]))
+print(test.longestCommonPrefix(["flower","flow","flight"]))
